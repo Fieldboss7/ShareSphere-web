@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareSphere</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+    textarea { width: 80%; height: 100px; margin: 10px 0; }
+    button { padding: 10px 20px; background: #4267B2; color: white; border: none; cursor: pointer; }
+    button:hover { background: #365899; }
+  </style>
+</head>
+<body>
+  <h1>ShareSphere</h1>
+  <textarea id="post" placeholder="Write your post..."></textarea>
+  <button onclick="shareToFacebook()">Share to Facebook</button>
+  <script>
+    function shareToFacebook() {
+      const post = document.getElementById('post').value;
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}"e=${encodeURIComponent(post)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
