@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareSphere</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; text-align: center; background: #f0f0f0; }
+    textarea { width: 90%; height: 120px; margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 12px 24px; background: #00cc00; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #00b300; }
+    #status { margin-top: 10px; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>ShareSphere</h1>
+  <textarea id="post" placeholder="Share your thoughts with the world!"></textarea>
+  <button onclick="shareEverywhere()">Share Everywhere</button>
+  <div id="status"></div>
+  <script>
+    function shareEverywhere() {
+      const post = document.getElementById('post').value;
+      const baseUrl = 'https://sharesphere-everywhere.netlify.app/';
+      const encodedPost = encodeURIComponent(post);
+      const encodedUrl = encodeURIComponent(baseUrl);
+
+      const platforms = [
+        `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}"e=${encodedPost}`,
+        `https://twitter.com/intent/tweet?text=${encodedPost}&url=${encodedUrl}`,
+        `https://api.whatsapp.com/send?text=${encodedPost}%20${encodedUrl}`,
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${encodedPost}`,
+        `https://reddit.com/submit?url=${encodedUrl}&title=${encodedPost}`
+      ];
+
+      platforms.forEach(url => window.open(url, '_blank'));
+      document.getElementById('status').innerText = 'Sharing everywhere...';
+    }
+  </script>
+</body>
+</html>
